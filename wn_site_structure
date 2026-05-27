@@ -1,0 +1,24 @@
+wunian-site/
+
+├── index.html
+├── about.html
+
+├── writings/
+│   ├── index.html
+│   ├── notes-on-collective.html
+│   ├── invisible-cities.html
+│   ├── archive-memory.html
+
+├── projects/
+│   ├── index.html
+│   ├── bao-house.html
+│   ├── gowanus-thesis.html
+
+├── fragments/
+│   ├── index.html
+│   ├── water-notes.html
+│   ├── images-and-memory.html
+
+├── images/
+├── style.css
+├── script.js
