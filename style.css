@@ -103,6 +103,33 @@
   opacity: 0.35;
 }
 
+/* ── top nav — W + section breadcrumb for detail pages ── */
+.top-nav {
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.top-nav a {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  transition: opacity 0.2s ease;
+}
+
+/* W — full opacity, dims on hover */
+.top-nav a:hover { opacity: 0.35; }
+
+/* section link — dimmed by default, brightens on hover */
+.top-nav a + a { opacity: 0.35; }
+.top-nav a + a:hover { opacity: 1; }
+
 /* ── section page container ── */
 .page {
   max-width: 38rem;
