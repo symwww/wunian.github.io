@@ -84,3 +84,106 @@
       gap: 1.5rem;
     }
   }
+
+/* ── back link — every sub-page ── */
+.back {
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  transition: opacity 0.2s ease;
+}
+
+.back:hover {
+  opacity: 0.35;
+}
+
+/* ── section page container ── */
+.page {
+  max-width: 38rem;
+  margin: 0 auto;
+}
+
+/* ── section page title (TEXTS / PROJECTS / FRAGMENTS) ── */
+.page-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin-bottom: 3.5rem;
+}
+
+/* ── year filter ── */
+.years {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.year-btn {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #000;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.year-btn:hover,
+.year-btn.active {
+  opacity: 1;
+}
+
+/* ── article / filing list ── */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* base row — grid-template-columns set per section */
+.article-item {
+  display: grid;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.article-list li:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* catalogue metadata — year, ff-code */
+.article-year {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  opacity: 0.35;
+}
+
+.article-code {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+
+/* entry title — one clear step above catalogue */
+.article-title {
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #000;
+  transition: opacity 0.2s ease;
+}
+
+.article-title:hover {
+  opacity: 0.35;
+}
