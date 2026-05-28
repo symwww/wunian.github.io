@@ -6,15 +6,83 @@
   <title>Projects — WUNIAN</title>
   <link rel="stylesheet" href="../style.css">
   <style>
+    body {
+      display: block;
+      min-height: 100vh;
+      height: auto;
+      padding: 8rem 2rem 8rem;
+    }
+
     .page {
-      width: min(38rem, 100% - 4rem);
+      max-width: 38rem;
+      margin: 0 auto;
     }
 
     .page-title {
       font-size: 0.68rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 4rem;
+      opacity: 0.35;
+      margin-bottom: 3.5rem;
+    }
+
+    .years {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .year-btn {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: #000;
+      opacity: 0.3;
+      transition: opacity 0.2s ease;
+    }
+
+    .year-btn:hover,
+    .year-btn.active {
+      opacity: 1;
+    }
+
+    .article-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .article-item {
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .article-list li:last-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .article-year {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      opacity: 0.35;
+    }
+
+    .article-title {
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: #000;
+      transition: opacity 0.2s ease;
+    }
+
+    .article-title:hover {
       opacity: 0.35;
     }
 
@@ -26,7 +94,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       text-decoration: none;
-      color: #000000;
+      color: #000;
       transition: opacity 0.2s ease;
     }
 
@@ -39,6 +107,34 @@
   <a class="back" href="../">W</a>
   <div class="page">
     <p class="page-title">Projects</p>
+
+    <div class="years">
+      <button class="year-btn" data-year="2026">2026</button>
+    </div>
+
+    <!-- newest year first — add new <li> entries at the top -->
+    <ul class="article-list">
+      <li class="article-item" data-year="2026">
+        <span class="article-year">2026</span>
+        <a class="article-title" href="wunian night 01.html">Wunian Night 01</a>
+      </li>
+    </ul>
   </div>
+
+  <script>
+    const btns  = document.querySelectorAll('.year-btn');
+    const items = document.querySelectorAll('.article-item');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const year     = btn.dataset.year;
+        const isActive = btn.classList.toggle('active');
+        btns.forEach(b => { if (b !== btn) b.classList.remove('active'); });
+        items.forEach(item => {
+          item.style.display = (!isActive || item.dataset.year === year) ? '' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
