@@ -119,10 +119,12 @@
 }
 
 /* ── year filter ── */
+/* margin-left aligns year buttons with the article title column (past the 4rem metadata col + 1.5rem gap) */
 .years {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 2.5rem;
+  margin-left: calc(4rem + 1.5rem);
 }
 
 .year-btn {
