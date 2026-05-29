@@ -1,0 +1,267 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$comment": "WUNIAN project data schema — used as reference for HTML authoring, not as a data file consumed by the site (the site is pure static HTML). This schema documents what information every project page encodes.",
+
+  "type": "object",
+  "required": ["slug", "title", "year", "category", "meta", "description", "images"],
+
+  "properties": {
+
+    "slug": {
+      "type": "string",
+      "description": "URL-safe identifier. Used as the HTML filename and image folder name.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "examples": ["heights-casino", "viva-natatio", "halophilic-island", "farber-house"]
+    },
+
+    "title": {
+      "type": "string",
+      "description": "Display title as shown in h1 and the index list. No hyphens. No em dashes. Title case or sentence case.",
+      "examples": [
+        "Heights Casino",
+        "Saint Ann's School Farber Building",
+        "Redhook Rain Story",
+        "Idle Village"
+      ]
+    },
+
+    "year": {
+      "type": "integer",
+      "description": "Year of project completion or primary work. Used for the data-year attribute in the index list and the year filter.",
+      "minimum": 2018,
+      "maximum": 2099,
+      "examples": [2022, 2023, 2024, 2025]
+    },
+
+    "category": {
+      "type": "string",
+      "description": "Appears in .project-label above the title. Typically 'Projects' or a more specific descriptor.",
+      "examples": ["Projects", "Work Sample", "Competition Entry", "Academic Project"]
+    },
+
+    "meta": {
+      "type": "string",
+      "description": "Secondary line below the title (.project-meta). Combines context and year. No hyphens. Use em dash (—) as the separator between location/studio and year.",
+      "format": "Location or Studio — Year",
+      "examples": [
+        "Lea Architecture — 2025",
+        "Gowanus, Brooklyn NY — 2023",
+        "Dead Sea — 2024",
+        "Colebrookdale Railroad, PA — Lea Architecture, 2025",
+        "Brooklyn Queens Expressway, NY — 2022"
+      ]
+    },
+
+    "context": {
+      "type": "object",
+      "description": "Structured breakdown of the meta field.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["academic", "professional", "personal", "competition"],
+          "description": "academic = Columbia MSAAD; professional = Lea Architecture; personal = independent; competition = open call"
+        },
+        "studio": {
+          "type": "string",
+          "description": "For professional work: studio name.",
+          "examples": ["Lea Architecture"]
+        },
+        "institution": {
+          "type": "string",
+          "description": "For academic work: school name. Omitted from site display.",
+          "examples": ["Columbia University GSAPP"]
+        },
+        "location": {
+          "type": "string",
+          "description": "City, neighborhood, or geographic context.",
+          "examples": ["Gowanus, Brooklyn NY", "Red Hook, Brooklyn NY", "Dead Sea", "Colebrookdale, PA"]
+        }
+      }
+    },
+
+    "description": {
+      "type": "array",
+      "description": "Array of paragraph strings. Each becomes a <p> tag in the HTML. 2–4 paragraphs typical. No hyphens. No em dashes.",
+      "items": {
+        "type": "string",
+        "minLength": 40
+      },
+      "minItems": 1,
+      "maxItems": 5,
+      "examples": [
+        [
+          "As flooding becomes more frequent due to climate change in New York, having facilities that utilize this excessive amount of water and contribute to building a new culture could bring nuance to how the environment changes.",
+          "The Gowanus Water Center contains a water filtration system that integrates into the city's waterworks and a bathhouse portion for human wellness."
+        ]
+      ]
+    },
+
+    "sections": {
+      "type": "array",
+      "description": "Optional named sections within the project page, creating h2 headings that divide the image sequence into thematic groups.",
+      "items": {
+        "type": "object",
+        "required": ["heading", "images"],
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Section heading text. No hyphens. Appears as <h2> in the page.",
+            "examples": ["Research Labs", "Case Study: AT&T Longline", "Red Hook Grain Terminal", "Artist Foundation", "Water System", "Plans & Sections"]
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional paragraph text for this section, placed after the h2 and before images."
+          },
+          "images": {
+            "type": "array",
+            "description": "Image entries belonging to this section.",
+            "$ref": "#/definitions/imageEntry"
+          }
+        }
+      }
+    },
+
+    "images": {
+      "type": "array",
+      "description": "All images in the project, in display order. Each entry corresponds to one .img-block in the HTML.",
+      "items": { "$ref": "#/definitions/imageEntry" },
+      "minItems": 1
+    },
+
+    "navigation": {
+      "type": "object",
+      "description": "For text/reading pages only — prev/next links in a series.",
+      "properties": {
+        "series": {
+          "type": "string",
+          "description": "Series label displayed in .series-label.",
+          "examples": ["On Cinema — Deleuze"]
+        },
+        "number": {
+          "type": "integer",
+          "description": "Position in series (1-indexed)."
+        },
+        "prev": {
+          "type": "object",
+          "properties": {
+            "slug": { "type": "string" },
+            "label": { "type": "string", "description": "Display label including number prefix, e.g. 'I. Movement and Duration'" }
+          }
+        },
+        "next": {
+          "type": "object",
+          "properties": {
+            "slug": { "type": "string" },
+            "label": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "tags": {
+      "type": "array",
+      "description": "Internal taxonomy for the project. Not displayed on site. Used for future filtering or related-work logic.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "water", "ecology", "urban", "housing", "adaptive-reuse",
+          "interior", "landscape", "infrastructure", "competition",
+          "film-theory", "reading-notes", "architecture-theory",
+          "rendering", "documentation", "masterplan", "research"
+        ]
+      }
+    },
+
+    "published": {
+      "type": "boolean",
+      "description": "Whether the project is currently linked from an index page. Pages can exist as files without being listed.",
+      "default": true
+    }
+
+  },
+
+  "definitions": {
+    "imageEntry": {
+      "type": "object",
+      "required": ["filename", "alt"],
+      "properties": {
+        "filename": {
+          "type": "string",
+          "description": "Image filename relative to image/[slug]/. Always two-digit zero-padded JPEG.",
+          "pattern": "^[0-9]{2}\\.jpg$",
+          "examples": ["01.jpg", "02.jpg", "07.jpg"]
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text for accessibility. Describes the image content specifically — not the project name.",
+          "examples": [
+            "Interior axonometric — public area A with reception desk and workstation cluster",
+            "Site analysis: heat and flooding overlay on Gowanus neighborhood"
+          ]
+        },
+        "caption": {
+          "type": "string",
+          "description": "Visible caption below the image. Optional. Format: 'Label: description. Additional note.' No hyphens. No em dashes.",
+          "examples": [
+            "Public A: reception and dispatch. Workstations, filing storage, and a private office alcove.",
+            "Site map: main complex on Gowanus Canal with satellite bathhouses distributed through NYCHA superblocks."
+          ]
+        },
+        "source": {
+          "type": "object",
+          "description": "Not displayed on site. Records the original source file for archival reference.",
+          "properties": {
+            "path": { "type": "string" },
+            "type": { "type": "string", "enum": ["pdf", "png", "jpg", "render"] },
+            "compressionWidth": { "type": "integer", "description": "sips --resampleWidth or --resampleHeight value used." }
+          }
+        },
+        "displayConstraint": {
+          "type": "string",
+          "description": "CSS max-width override applied to this image's .img-block img, if not full container width.",
+          "examples": ["36rem"]
+        }
+      }
+    }
+  },
+
+  "examples": [
+    {
+      "slug": "viva-natatio",
+      "title": "Viva Natatio",
+      "year": 2023,
+      "category": "Projects",
+      "meta": "Gowanus, Brooklyn NY — 2023",
+      "context": {
+        "type": "academic",
+        "institution": "Columbia University GSAPP",
+        "location": "Gowanus, Brooklyn NY"
+      },
+      "description": [
+        "As flooding becomes more frequent due to climate change in New York, having facilities that utilize this excessive amount of water and contribute to building a new culture could bring nuance to how the environment changes. An ecological shift can be read as an opportunity for a change in lifestyle rather than a crisis.",
+        "The Gowanus Water Center contains a water filtration system that integrates into the city's waterworks and a bathhouse portion for human wellness. As water enters the project, rainwater is collected by water tanks, then enters the filtration system inside the facility."
+      ],
+      "sections": [
+        {
+          "heading": "Site Analysis",
+          "images": [
+            {
+              "filename": "02.jpg",
+              "alt": "Site analysis showing heat and flooding overlay on Gowanus neighborhood",
+              "caption": "Site analysis: heat and flooding conditions in Gowanus. Pink: higher temperature zones. Blue: projected flood extent."
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "filename": "01.jpg",
+          "alt": "Entry courtyard with water tanks, bamboo, and terraced bathhouse volume",
+          "source": { "path": "/Volumes/work data/ARCHITECTURE/...", "type": "render", "compressionWidth": 2000 }
+        }
+      ],
+      "tags": ["water", "ecology", "urban", "infrastructure"],
+      "published": true
+    }
+  ]
+}

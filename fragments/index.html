@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fragments — WUNIAN</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      display: block;
+      min-height: 100vh;
+      height: auto;
+      padding: 8rem 2rem 8rem;
+    }
+
+    /* year | ff-code | title */
+    .article-item {
+      grid-template-columns: 4rem 3rem 1fr;
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="../">W</a>
+  <div class="page">
+    <p class="page-title">Fragments</p>
+
+    <div class="years">
+      <button class="year-btn" data-year="2026">2026</button>
+    </div>
+
+    <!-- newest year first — add new <li> entries at the top -->
+    <ul class="article-list">
+      <li class="article-item" data-year="2026">
+        <span class="article-year">2026</span>
+        <span class="article-code">ff01</span>
+        <a class="article-title" href="wunian night 01.html">Wunian Night 01</a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const btns  = document.querySelectorAll('.year-btn');
+    const items = document.querySelectorAll('.article-item');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const year     = btn.dataset.year;
+        const isActive = btn.classList.toggle('active');
+        btns.forEach(b => { if (b !== btn) b.classList.remove('active'); });
+        items.forEach(item => {
+          item.style.display = (!isActive || item.dataset.year === year) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

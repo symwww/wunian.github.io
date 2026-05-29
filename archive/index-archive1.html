@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WUNIAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body id="page">
+
+    <div class="intro-screen" aria-hidden="true">
+      <span class="intro-w">W</span>
+    </div>
+
+    <main class="landing" aria-hidden="true">
+      <h1 class="site-title">WUNIAN</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#">Texts</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Fragments</a></li>
+        </ul>
+      </nav>
+    </main>
+
+    <script>
+      setTimeout(() => {
+        document.getElementById("page").classList.add("is-cut");
+        document.querySelector(".landing").removeAttribute("aria-hidden");
+      }, 1000);
+    </script>
+
+  </body>
+</html>

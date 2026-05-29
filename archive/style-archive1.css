@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: "Archivo Black", sans-serif;
+  overflow-x: hidden;
+}
+
+/* —— Intro —— */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.intro-w {
+  font-size: min(92vw, 92vh);
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+
+/* —— Landing —— */
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(4rem, 12vh, 8rem) clamp(2rem, 7vw, 5rem);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s ease 0.15s, visibility 0.7s ease 0.15s;
+}
+
+.site-title {
+  font-size: clamp(5rem, 18vw, 14rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+  margin-bottom: clamp(3rem, 10vh, 6rem);
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li + li {
+  margin-top: 1rem;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* —— Cut: intro out, landing in —— */
+
+body.is-cut .intro-screen {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.is-cut .landing {
+  opacity: 1;
+  visibility: visible;
+}

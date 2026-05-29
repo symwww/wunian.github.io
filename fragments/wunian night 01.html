@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wunian Night 01 — WUNIAN</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* ── content: centered in viewport ── */
+    .content {
+      width: min(28rem, 100% - 4rem);
+    }
+
+    .track-title {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .track-year {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      opacity: 0.35;
+      margin-bottom: 2.5rem;
+    }
+
+    .track-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .track-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      padding: 0.75rem 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s ease;
+      user-select: none;
+    }
+
+    .track-item:last-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .track-item:hover,
+    .track-item.active {
+      opacity: 1;
+    }
+
+    .track-contributor {
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+    }
+
+    /* ── player: fixed center bottom ── */
+    .player {
+      position: fixed;
+      bottom: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(28rem, 100% - 4rem);
+    }
+
+    .progress {
+      width: 100%;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      margin-bottom: 1.2rem;
+    }
+
+    .progress:hover {
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #000;
+    }
+
+    .controls {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .play-btn {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: #000;
+      transition: opacity 0.2s ease;
+    }
+
+    .play-btn:hover {
+      opacity: 0.35;
+    }
+
+    .time {
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      opacity: 0.4;
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../">W</a>
+    <a href="./">Fragments</a>
+  </nav>
+
+  <!-- content: centered -->
+  <div class="content">
+    <p class="track-title">Wunian Night 01</p>
+    <p class="track-year">2026</p>
+
+    <!-- ff list — add new <li> entries below, incrementing n -->
+    <ul class="track-list" id="trackList">
+      <li class="track-item active" data-src="../music/wn01ff01.mp3">
+        <span>ff01. tongue</span>
+        <span class="track-contributor">bai, hibi</span>
+      </li>
+    </ul>
+
+    <a class="return-link" href="./">Return to Fragments</a>
+  </div>
+
+  <!-- player: fixed bottom -->
+  <div class="player">
+    <div class="progress" id="progressTrack">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="controls">
+      <button class="play-btn" id="playBtn">Play</button>
+      <span class="time" id="time">0:00</span>
+    </div>
+  </div>
+
+  <script>
+    const audio         = new Audio('../music/wn01ff01.mp3');
+    const playBtn       = document.getElementById('playBtn');
+    const progressTrack = document.getElementById('progressTrack');
+    const progressFill  = document.getElementById('progressFill');
+    const timeEl        = document.getElementById('time');
+    const trackItems    = document.querySelectorAll('.track-item');
+
+    // track selection
+    trackItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('active')) return;
+        const wasPlaying = !audio.paused;
+        trackItems.forEach(t => t.classList.remove('active'));
+        item.classList.add('active');
+        audio.pause();
+        audio.src = item.dataset.src;
+        progressFill.style.width = '0%';
+        timeEl.textContent       = '0:00';
+        playBtn.textContent      = 'Play';
+        if (wasPlaying) audio.play().then(() => playBtn.textContent = 'Pause');
+      });
+    });
+
+    // play / pause
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = 'Pause';
+      } else {
+        audio.pause();
+        playBtn.textContent = 'Play';
+      }
+    });
+
+    // progress update
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    });
+
+    // seek
+    progressTrack.addEventListener('click', e => {
+      if (!audio.duration) return;
+      const rect = progressTrack.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+    });
+
+    // end
+    audio.addEventListener('ended', () => {
+      playBtn.textContent      = 'Play';
+      progressFill.style.width = '0%';
+      timeEl.textContent       = '0:00';
+      audio.currentTime        = 0;
+    });
+
+    function fmt(s) {
+      const m   = Math.floor(s / 60);
+      const sec = Math.floor(s % 60).toString().padStart(2, '0');
+      return m + ':' + sec;
+    }
+  </script>
+</body>
+</html>
