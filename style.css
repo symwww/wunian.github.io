@@ -222,10 +222,10 @@
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.25);
+  text-underline-offset: 0.25em;
   color: #000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  padding-bottom: 0.15rem;
   margin-top: 5rem;
   transition: opacity 0.2s ease;
 }

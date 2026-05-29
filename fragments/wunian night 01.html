@@ -65,13 +65,24 @@
       opacity: 0.6;
     }
 
-    /* ── player: fixed center bottom ── */
-    .player {
+    /* ── bottom bar: player + return link, fixed center bottom ── */
+    .bottom-bar {
       position: fixed;
-      bottom: 4rem;
+      bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
       width: min(28rem, 100% - 4rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .player {
+      width: 100%;
+    }
+
+    .bottom-bar .return-link {
+      margin-top: 0;
     }
 
     .progress {
@@ -142,18 +153,20 @@
       </li>
     </ul>
 
-    <a class="return-link" href="./">Return to Fragments</a>
   </div>
 
-  <!-- player: fixed bottom -->
-  <div class="player">
-    <div class="progress" id="progressTrack">
-      <div class="progress-fill" id="progressFill"></div>
+  <!-- player + return: fixed bottom -->
+  <div class="bottom-bar">
+    <div class="player">
+      <div class="progress" id="progressTrack">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="controls">
+        <button class="play-btn" id="playBtn">Play</button>
+        <span class="time" id="time">0:00</span>
+      </div>
     </div>
-    <div class="controls">
-      <button class="play-btn" id="playBtn">Play</button>
-      <span class="time" id="time">0:00</span>
-    </div>
+    <a class="return-link" href="./">Return to Fragments</a>
   </div>
 
   <script>
