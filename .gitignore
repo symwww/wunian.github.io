@@ -1,21 +1,35 @@
-
 .DS_Store
 
+# audio/video
 *.wav
-
+*.aiff
+*.flac
+*.mov
+*.MOV
+*.mp4
 *.mp3
 
-*.MOV
+# adobe
+*.psd
+*.ai
+*.indd
 
-*.mov
-
-*.mp4
-
+# documents
 *.pdf
 
+# macOS
+.AppleDouble
+.LSOverride
+
+# temp
+tmp/
+cache/
+
+# exports
+exports/
+archive/
+
+# local experiments
 image/portfolio/
-
 image/wn01/
-
 music/
-
