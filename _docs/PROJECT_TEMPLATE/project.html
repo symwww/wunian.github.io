@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- EDIT: "Project Title — WUNIAN" -->
+  <title>Project Title — WUNIAN</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    @font-face {
+      font-family: 'Akt';
+      src: url('../Akt,Archivo_Black/Akt/Akt-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: block;
+    }
+
+    body {
+      font-family: 'Akt', sans-serif;
+      font-weight: 100;
+      display: block;
+      min-height: 100vh;
+      height: auto;
+      padding: 8rem 2rem 8rem;
+    }
+
+    .project {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    .project-label {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.35;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-weight: 100;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-meta {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      opacity: 0.35;
+      margin-bottom: 4rem;
+    }
+
+    p {
+      font-weight: 100;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 0 0 1.2rem;
+      max-width: 38rem;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 1rem;
+      margin: 4rem 0 1.8rem;
+      max-width: 38rem;
+    }
+
+    .img-block {
+      margin: 3rem 0 0.4rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .img-block img {
+      display: block;
+      width: 100%;
+    }
+
+    .caption {
+      font-family: 'Akt', sans-serif;
+      font-weight: 100;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+      margin-bottom: 3rem;
+      max-width: 38rem;
+    }
+
+    /*
+      OPTIONAL: Uncomment if using 4000px high-density images (axonometrics, PDFs).
+      This constrains display to 36rem, creating very high apparent pixel density.
+    */
+    /* .img-block img { max-width: 36rem; } */
+
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../">W</a>
+    <a href="./">Projects</a>
+  </nav>
+
+  <div class="project">
+
+    <!-- EDIT: category label — usually "Projects" -->
+    <p class="project-label">Projects</p>
+
+    <!-- EDIT: full project title. No hyphens. No em dashes. -->
+    <h1>Project Title</h1>
+
+    <!-- EDIT: context and year. Formats:
+         Academic:     "Location, City ST — YYYY"
+         Professional: "Studio Name — YYYY"
+         Mixed:        "Location — Studio Name, YYYY"
+    -->
+    <p class="project-meta">Location — Studio / Context, Year</p>
+
+    <!-- EDIT: 2–4 paragraphs describing the project.
+         No hyphens. No em dashes (use colon or new sentence).
+         Factual, architectural, concise. Do not use marketing language.
+    -->
+    <p>Project description paragraph one. Describe the brief, site, or ecological/social context. 2–3 sentences.</p>
+
+    <p>Project description paragraph two. Describe the design response, key systems, or spatial logic. 2–3 sentences.</p>
+
+    <!-- First image — typically the primary render or most legible view -->
+    <div class="img-block">
+      <img src="../image/project-slug/01.jpg" alt="Descriptive alt text — what is shown in the image">
+    </div>
+    <!-- Caption is optional. Omit the <p class="caption"> tag entirely if no caption needed. -->
+    <!-- <p class="caption">Label: description of image content. Additional note.</p> -->
+
+    <!-- Section heading — use only when a genuine thematic division occurs -->
+    <!-- <h2>Section Name</h2> -->
+    <!-- Optional section description paragraph -->
+    <!-- <p>...</p> -->
+
+    <div class="img-block">
+      <img src="../image/project-slug/02.jpg" alt="Descriptive alt text">
+    </div>
+    <p class="caption">Label: description. Additional note if needed.</p>
+
+    <div class="img-block">
+      <img src="../image/project-slug/03.jpg" alt="Descriptive alt text">
+    </div>
+    <p class="caption">Label: description.</p>
+
+    <!-- Add more .img-block / .caption pairs as needed -->
+    <!-- Pattern: img-block margin is 3rem top, 0.4rem bottom; caption margin is 0 top, 3rem bottom -->
+    <!-- This creates visual coupling between each image and its caption -->
+
+    <!-- REQUIRED: always end with the return link -->
+    <a class="return-link" href="./">Return to Projects</a>
+
+  </div>
+</body>
+</html>
