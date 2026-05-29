@@ -233,3 +233,63 @@
 .return-link:hover {
   opacity: 0.35;
 }
+
+/* ── clickable text link ──
+   Use on any inline <a> that should signal interactivity
+   through hover-dimming without visible underline or color change.
+   Add class="link-dim" to the <a> tag.                          */
+.link-dim {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.link-dim:hover {
+  opacity: 0.35;
+}
+
+/* ════════════════════════════════════════════
+   PROJECT ENTRY FORMAT
+   Standard template for all project detail pages.
+   Body override (display:block, padding 8rem 2rem)
+   stays inline per page — global body uses flex.
+   ════════════════════════════════════════════ */
+
+/* ── title ──
+   Archivo Black overrides the inline h1 { font-weight: 100 }
+   via higher specificity (.project h1 > h1).              */
+.project h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+/* ── image block ──
+   3rem above, 0.4rem below — tight bottom margin
+   makes the caption read as attached to its image. */
+.img-block {
+  margin: 3rem 0 0.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.img-block img {
+  display: block;
+  width: 100%;
+}
+
+/* ── caption ──
+   Font: Akt Light, 0.65rem, 0.05em tracking.
+   margin-top: 0  — flush under the image.
+   margin-bottom: 3rem — space before next block. */
+.caption {
+  font-family: 'Akt', sans-serif;
+  font-weight: 100;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  margin-top: 0;
+  margin-bottom: 3rem;
+  max-width: 38rem;
+}
