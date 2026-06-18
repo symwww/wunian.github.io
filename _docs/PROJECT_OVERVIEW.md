@@ -68,7 +68,7 @@ Editorial precedents: Perspecta, Daidalos, Log, San Rocco, Dogma publications. T
 | Scripting | Vanilla JS (only year-filter and homepage animation) | No dependencies |
 | Fonts | Self-hosted (Akt variable + Archivo Black) | No external requests |
 | Images | JPEG via `sips` compression | Fast, compatible |
-| Hosting | GitHub Pages (CNAME: wunian.site) | Free, reliable, version-controlled |
+| Hosting | GitHub Pages (CNAME: wuniancollective.com) | Free, reliable, version-controlled |
 | Deployment | Git push to `origin` (symwww/wunian.github.io) | Simple, traceable |
 
 No CMS. No build pipeline. No npm. No framework. The site is edited as files.

@@ -1,10 +1,11 @@
 # WUNIAN — Claude Context
 
 **Owner:** Leslie Sheng  
-**Site:** wunian.site  
+**Site (production):** wuniancollective.com  
+**Local repo:** /Users/lesliesheng/wunian.site/  
 **Repo:** github.com/symwww/wunian.github.io  
 **Branch:** `add-section-pages` → merged to main for deploy  
-**Hosting:** GitHub Pages (CNAME: wunian.site)
+**Hosting:** GitHub Pages (CNAME: wuniancollective.com)
 
 ---
 
@@ -124,6 +125,10 @@ sips -s format jpeg -s formatOptions 85 --resampleWidth 4000 input.pdf --out out
 
 ## Git Workflow
 
+**Follow `_docs/GIT_SAFETY.md` before any git operation** (verify repo root +
+remote `symwww/wunian.github.io`, never push automatically, stage named files
+only after confirmation, show a summary before commit, stop if context is unclear).
+
 ```bash
 git add [specific files]    # never git add -A (avoids accidentally committing PDFs/fonts)
 git commit -m "description"
@@ -141,3 +146,4 @@ See `_docs/` for detailed references:
 - `PROJECT_SCHEMA.json` — structured data model for projects
 - `PROJECT_TEMPLATE/` — copy-paste HTML and markdown templates
 - `CLAUDE_CONTEXT.md` — extended onboarding for new Claude sessions
+- `GIT_SAFETY.md` — git safety protocol (this repo + reusable template)
