@@ -36,3 +36,8 @@ archive/
 # local experiments
 image/portfolio/
 image/wn01/
+
+# favicon source asset + staging build folders (kept locally, never committed)
+logo-src.png
+favicon-build/
+favicon-build-fill/
