@@ -139,6 +139,7 @@
 /* ── section page title (TEXTS / PROJECTS / FRAGMENTS) ── */
 .page-title {
   font-size: 0.85rem;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.35;

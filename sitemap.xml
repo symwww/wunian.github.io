@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url><loc>https://wunian.site/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://wunian.site/about.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wunian.site/leslie-sheng.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+
+  <url><loc>https://wunian.site/projects/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wunian.site/projects/wunian%20night%2001.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://wunian.site/projects/colebrookdale.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/heights-casino.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/farber-house.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/melrose.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/education-competition.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/redhook-rain-story.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/halophilic-island.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/viva-natatio.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/hinge-house.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/projects/idle-village.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://wunian.site/text/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://wunian.site/text/founding_wunian.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-movement.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-frame.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-perception.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-affection.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-action.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-crisis.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-crystals.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wunian.site/text/deleuze-false.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://wunian.site/fragments/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wunian.site/fragments/wunian%20night%2001.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+
+</urlset>

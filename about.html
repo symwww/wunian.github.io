@@ -4,11 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — WUNIAN</title>
+  <meta name="description" content="About the Wunian Collective: a personal archive of architecture, writing, memory, and unfinished fragments, built and maintained by Leslie Sheng.">
+  <link rel="canonical" href="https://wunian.site/about.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WUNIAN">
+  <meta property="og:title" content="About — WUNIAN">
+  <meta property="og:description" content="A personal archive of architecture, writing, memory, and unfinished fragments, built and maintained by Leslie Sheng.">
+  <meta property="og:url" content="https://wunian.site/about.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="About — WUNIAN">
+  <meta name="twitter:description" content="A personal archive of architecture, writing, memory, and unfinished fragments, built and maintained by Leslie Sheng.">
+
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <style>
     .about {
       max-width: 38rem;
       padding: 0 2rem;
+    }
+
+    .about h1 {
+      font-weight: 400;
+      line-height: 1.7;
     }
 
     .about p {
@@ -49,15 +68,30 @@
   </style>
 </head>
 <body>
-  <a class="back" href="index.html">W</a>
-  <div class="about">
-    <p class="collective"><a href="text/founding_wunian.html" class="link-dim">Wunian (vun-ee-ahn) Collective</a></p>
+  <a class="back" href="index.html" aria-label="Back to WUNIAN home">W</a>
+  <main class="about">
+    <h1 class="collective"><a href="text/founding_wunian.html" class="link-dim">Wunian (vun-ee-ahn) Collective</a></h1>
     <p>A personal archive of architecture, writing, memory, and unfinished fragments.</p>
     <p class="byline">Built and maintained by <a href="leslie-sheng.html" class="link-dim" style="text-decoration:underline;text-decoration-color:rgba(0,0,0,0.25);text-underline-offset:0.2em;">Leslie Sheng</a>.</p>
-    <div class="contact">
-      <a href="mailto:info@wuniancollective.xyz">Email</a>
-      <a href="https://www.instagram.com/wuniancollective/" target="_blank" rel="noopener">Instagram</a>
-    </div>
-  </div>
+    <footer class="contact">
+      <a href="mailto:info@wuniancollective.xyz">Email Wunian Collective</a>
+      <a href="https://www.instagram.com/wuniancollective/" target="_blank" rel="noopener">Wunian on Instagram</a>
+    </footer>
+  </main>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About — WUNIAN",
+    "url": "https://wunian.site/about.html",
+    "inLanguage": "en",
+    "about": {
+      "@type": "Organization",
+      "name": "Wunian Collective",
+      "url": "https://wunian.site/",
+      "founder": { "@type": "Person", "name": "Leslie Sheng" }
+    }
+  }
+  </script>
 </body>
 </html>

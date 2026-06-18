@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wunian Night 01 — WUNIAN</title>
+  <meta name="description" content="Wunian Night 01: a fragment of sound. Listen to ff01 tongue by bai and hibi, part of the Wunian Fragments collection.">
+  <link rel="canonical" href="https://wunian.site/fragments/wunian%20night%2001.html">
+
+  <meta property="og:type" content="music.playlist">
+  <meta property="og:site_name" content="WUNIAN">
+  <meta property="og:title" content="Wunian Night 01 — WUNIAN">
+  <meta property="og:description" content="A fragment of sound. Listen to ff01 tongue by bai and hibi.">
+  <meta property="og:url" content="https://wunian.site/fragments/wunian%20night%2001.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wunian Night 01 — WUNIAN">
+  <meta name="twitter:description" content="A fragment of sound. Listen to ff01 tongue by bai and hibi.">
+
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
   <style>
     body {
@@ -20,6 +34,7 @@
 
     .track-title {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 400;
       line-height: 1.2;
       margin-bottom: 0.4rem;
     }
@@ -141,19 +156,19 @@
   </nav>
 
   <!-- content: centered -->
-  <div class="content">
-    <p class="track-title">Wunian Night 01</p>
+  <main class="content">
+    <h1 class="track-title">Wunian Night 01</h1>
     <p class="track-year">2026</p>
 
     <!-- ff list — add new <li> entries below, incrementing n -->
-    <ul class="track-list" id="trackList">
-      <li class="track-item active" data-src="../music/wn01ff01.mp3">
+    <ul class="track-list" id="trackList" aria-label="Fragment tracks">
+      <li class="track-item active" data-src="../music/wn01ff01.mp3" role="button" tabindex="0" aria-label="Play ff01 tongue by bai, hibi">
         <span>ff01. tongue</span>
         <span class="track-contributor">bai, hibi</span>
       </li>
     </ul>
 
-  </div>
+  </main>
 
   <!-- player + return: fixed bottom -->
   <div class="bottom-bar">
@@ -179,6 +194,12 @@
 
     // track selection
     trackItems.forEach(item => {
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
       item.addEventListener('click', () => {
         if (item.classList.contains('active')) return;
         const wasPlaying = !audio.paused;
@@ -231,6 +252,27 @@
       const sec = Math.floor(s % 60).toString().padStart(2, '0');
       return m + ':' + sec;
     }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicPlaylist",
+    "name": "Wunian Night 01",
+    "url": "https://wunian.site/fragments/wunian%20night%2001.html",
+    "datePublished": "2026",
+    "inLanguage": "en",
+    "publisher": { "@type": "Organization", "name": "Wunian Collective", "url": "https://wunian.site/" },
+    "isPartOf": { "@type": "CollectionPage", "name": "Fragments", "url": "https://wunian.site/fragments/" },
+    "track": {
+      "@type": "MusicRecording",
+      "name": "ff01. tongue",
+      "byArtist": [
+        { "@type": "MusicGroup", "name": "bai" },
+        { "@type": "MusicGroup", "name": "hibi" }
+      ],
+      "audio": { "@type": "AudioObject", "contentUrl": "https://wunian.site/music/wn01ff01.mp3", "encodingFormat": "audio/mpeg" }
+    }
+  }
   </script>
 </body>
 </html>

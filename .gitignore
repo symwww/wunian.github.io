@@ -9,6 +9,10 @@
 *.mp4
 *.mp3
 
+# but allow published fragment audio (served by GitHub Pages)
+!music/
+!music/**/*.mp3
+
 # adobe
 *.psd
 *.ai
@@ -32,4 +36,3 @@ archive/
 # local experiments
 image/portfolio/
 image/wn01/
-music/

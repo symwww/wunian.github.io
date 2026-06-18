@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fragments — WUNIAN</title>
+  <meta name="description" content="Wunian Fragments: sound pieces and short experimental works collected as numbered fragments, browsable by year.">
+  <link rel="canonical" href="https://wunian.site/fragments/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WUNIAN">
+  <meta property="og:title" content="Fragments — WUNIAN">
+  <meta property="og:description" content="Sound pieces and short experimental works collected as numbered fragments.">
+  <meta property="og:url" content="https://wunian.site/fragments/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fragments — WUNIAN">
+  <meta name="twitter:description" content="Sound pieces and short experimental works collected as numbered fragments.">
+
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
   <style>
     body {
@@ -20,11 +34,11 @@
   </style>
 </head>
 <body>
-  <a class="back" href="../">W</a>
-  <div class="page">
-    <p class="page-title">Fragments</p>
+  <a class="back" href="../" aria-label="Back to WUNIAN home">W</a>
+  <main class="page">
+    <h1 class="page-title">Fragments</h1>
 
-    <div class="years">
+    <div class="years" role="group" aria-label="Filter fragments by year">
       <button class="year-btn" data-year="2026">2026</button>
     </div>
 
@@ -36,7 +50,19 @@
         <a class="article-title" href="wunian night 01.html">Wunian Night 01</a>
       </li>
     </ul>
-  </div>
+  </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Fragments — WUNIAN",
+    "url": "https://wunian.site/fragments/",
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "WUNIAN", "url": "https://wunian.site/" },
+    "about": "Sound and experimental fragments by Wunian"
+  }
+  </script>
 
   <script>
     const btns  = document.querySelectorAll('.year-btn');

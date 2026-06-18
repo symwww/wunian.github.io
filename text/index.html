@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Texts — WUNIAN</title>
+  <meta name="description" content="Written texts by Leslie Sheng: the founding of Wunian and a reading-notes series on Gilles Deleuze's cinema philosophy, browsable by year.">
+  <link rel="canonical" href="https://wunian.site/text/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WUNIAN">
+  <meta property="og:title" content="Texts — WUNIAN">
+  <meta property="og:description" content="Written texts by Leslie Sheng, including a reading-notes series on Deleuze's cinema philosophy.">
+  <meta property="og:url" content="https://wunian.site/text/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Texts — WUNIAN">
+  <meta name="twitter:description" content="Written texts by Leslie Sheng, including a reading-notes series on Deleuze's cinema philosophy.">
+
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style.css">
   <style>
     body {
@@ -20,11 +34,11 @@
   </style>
 </head>
 <body>
-  <a class="back" href="../">W</a>
-  <div class="page">
-    <p class="page-title">Texts</p>
+  <a class="back" href="../" aria-label="Back to WUNIAN home">W</a>
+  <main class="page">
+    <h1 class="page-title">Texts</h1>
 
-    <div class="years">
+    <div class="years" role="group" aria-label="Filter texts by year">
       <button class="year-btn" data-year="2026">2026</button>
       <button class="year-btn" data-year="2021">2021</button>
     </div>
@@ -68,7 +82,19 @@
         <a class="article-title" href="deleuze-false.html">On Cinema — VIII. The Powers of the False</a>
       </li>
     </ul>
-  </div>
+  </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Texts — WUNIAN",
+    "url": "https://wunian.site/text/",
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "WUNIAN", "url": "https://wunian.site/" },
+    "about": "Written texts by Leslie Sheng"
+  }
+  </script>
 
   <script>
     const btns  = document.querySelectorAll('.year-btn');
