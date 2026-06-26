@@ -41,3 +41,7 @@ image/wn01/
 logo-src.png
 favicon-build/
 favicon-build-fill/
+
+# og:image source asset + staging folder (kept locally, never committed)
+og-src-wunian.png
+og-build/
