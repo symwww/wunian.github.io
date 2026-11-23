@@ -2,7 +2,7 @@
 
 **Owner:** Leslie Sheng  
 **Site (production):** wuniancollective.com  
-**Local repo:** /Users/lesliesheng/wunian.site/  
+**Local repo:** /Users/lesliesheng/Desktop/wunian.site/  
 **Repo:** github.com/symwww/wunian.github.io  
 **Branch:** `add-section-pages` → merged to main for deploy  
 **Hosting:** GitHub Pages (CNAME: wuniancollective.com)
@@ -23,7 +23,7 @@ WUNIAN is a personal archive and publication platform — not a conventional por
 wunian.site/
 ├── index.html              ← homepage (wordmark reveal animation)
 ├── style.css               ← global stylesheet, shared by all pages
-├── script.js               ← homepage JS only
+├── script.js               ← homepage reveal + W menu, loaded by every page
 ├── about.html
 ├── projects/
 │   ├── index.html          ← project archive list (year-filtered)
@@ -58,7 +58,9 @@ wunian.site/
 ### Typography
 | Element | Font | Weight | Size | Tracking |
 |---------|------|--------|------|---------|
-| Wordmark/nav | Archivo Black | 400 | clamp / 0.85rem | 0.14em |
+| Wordmark | Archivo Black | 400 | clamp | -0.02em |
+| W icon | Archivo Black | 400 | 0.95rem | 0.14em |
+| W menu items | Archivo Black | 400 | 0.65rem (0.85rem on hover) | 0.14em |
 | Labels/meta | Archivo Black | 400 | 0.65–0.68rem | 0.08–0.14em |
 | Body text | Akt | 100 | 1rem | — |
 | Subheadings (h2) | Akt | 300 | 1rem–1.15rem | — |
@@ -71,6 +73,8 @@ wunian.site/
 - Hover: typically 0.35 on items that are normally full-opacity; items normally dim may invert
 
 ### Layout
+- W menu on every page except the homepage (markup in `_docs/DESIGN_LANGUAGE.md`)
+- W and all text columns share one left edge: `max(2rem, calc((100% - 56rem) / 2))`. W is always leftmost
 - Project pages: `max-width: 56rem`, body padding `8rem 2rem`
 - Essay/text pages: `max-width: 38rem`, same padding
 - Image blocks: `margin: 3rem 0 0.4rem` | Captions: `margin-top: 0; margin-bottom: 3rem`
@@ -88,7 +92,8 @@ wunian.site/
 - `border-radius` on anything
 - `box-shadow` / `drop-shadow`
 - Animations beyond homepage wordmark reveal and opacity transitions
-- Hover states that move or transform elements
+- Hover states that move or transform elements (exception: W menu items grow on hover)
+- Dropdown menus other than the W menu
 - Any SaaS/portfolio-template aesthetic (cards, grid thumbnails, tags, CTAs)
 
 ---

@@ -25,12 +25,15 @@ Used for: body text, project descriptions, essay paragraphs, captions (in `proje
 Weights used: 100 (body), 200 (blockquote italic), 300 (h2 subheadings)  
 This is a variable font — the weight axis is continuous from 100 to 900.
 
+Neither font has a true italic. Italics in Akt are slanted by the browser. Do not use italics in Archivo Black.
+
 ### Size and Spacing Scale
 
 | Element | Font | Weight | Size | Letter-spacing | Notes |
 |---------|------|--------|------|---------------|-------|
 | Site wordmark | Archivo Black | 400 | `clamp(5rem, 12vw, 10rem)` | -0.02em | Homepage only |
-| Back / top-nav W | Archivo Black | 400 | 0.85rem | 0.14em | Fixed position |
+| W icon | Archivo Black | 400 | 0.95rem | 0.14em | Fixed position, 0.7px optical nudge right |
+| W menu items | Archivo Black | 400 | 0.65rem | 0.14em | Uppercase, 0.85rem on hover and keyboard focus |
 | Page section title | Archivo Black | 400 | 0.85rem | 0.14em | "PROJECTS", "TEXTS" |
 | Year buttons | Archivo Black | 400 | 0.65rem | 0.10em | |
 | Project/article list items | Archivo Black | 400 | 0.95rem | — | Not tracked |
@@ -77,24 +80,34 @@ Opacity is the only way the site creates visual hierarchy (besides size). It mus
 | `0.2` | Blockquote left border |
 | `0.25` | Return link underline |
 | `0.3` | Year filter buttons (inactive) |
-| `0.35` | All metadata, labels, section page titles, series labels, reading-meta |
+| `0.35` | All metadata, labels, section page titles, series labels, reading-meta, current section in the W menu |
 | `0.45` | Reading-nav links |
 | `0.7` | Hover state for some reading-nav items |
+| `0.9` | White mask over the page while the W menu is open |
 | `1.0` | Body text, headings, captions, all content |
 
 The pattern: **content is full opacity, context is at 0.35.** Navigation is the context; the work is the content.
 
-Hover states on full-opacity items typically go to 0.35. Hover states on already-dimmed items may invert (go to 1.0) — see `.top-nav a + a` which is 0.35 by default and brightens on hover.
+Hover states on full-opacity items typically go to 0.35. Hover states on already-dimmed items may invert (go to 1.0) — see `.w-dropdown a.w-current` which is 0.35 by default and brightens on hover.
 
 ---
 
 ## Spacing
 
+### Shared Left Edge
+W, the W menu and every text column start on one line, the left edge of the 56rem project column. W is always the leftmost element. The homepage is the exception: it stays centered.
+```css
+left: max(2rem, calc((100% - 56rem) / 2));
+```
+Columns narrower than 56rem keep their width and start on this line. They are not centered. The rules live in `style.css` under "shared left edge".
+
 ### Page Layout
 - Body padding (all sub-pages): `8rem 2rem 8rem` (top-right-bottom, using same value for left and right)
-- `.page` container: `max-width: 38rem; margin: 0 auto` (section index pages and text pages)
+- `.page` container: `max-width: 38rem`, on the shared left edge (section index pages)
 - `.project` container: `max-width: 56rem; margin: 0 auto` (project detail pages)
-- `.essay` container: `max-width: 38rem; margin: 0 auto` (text/reading pages)
+- `.essay` container: `max-width: 38rem`, on the shared left edge (text/reading pages)
+- `.about` container: `max-width: 38rem` including 2rem side padding, 6rem top and bottom padding, on the shared left edge
+- `.content` and `.bottom-bar`: `28rem` wide, on the shared left edge (fragment pages)
 
 ### Image Rhythm
 This is the most important spacing rule in project pages:
@@ -134,18 +147,40 @@ p {
 
 ## Navigation
 
-### Fixed top-left nav (detail pages)
+### W menu (every page except the homepage)
+A fixed W at the top left opens a dropdown menu. It replaces the earlier back link and the "W Projects" breadcrumb.
 ```
-W · Texts         ← section pages
-W · Projects
+W
+Home
+Texts
+Projects
+Fragments
+About
 ```
-- "W" at full opacity, dims on hover
-- Section label at 0.35, brightens to full on hover
-- `gap: 1.5rem` between items
-- `font-size: 0.85rem`, letter-spacing `0.14em`, uppercase
+- Click W to open or close. A click outside the menu or Escape also closes it
+- Current section carries `class="w-current"` and sits at 0.35
+- No lines between items
+- Hover: the item grows from 0.65rem to 0.85rem and dims to 0.35. Row height and menu width stay fixed, so nothing shifts
+- Open state: a 90% white mask covers the page so the menu is the focus
+- A solid white strip, 5rem tall and full width, sits behind W so content never overlaps it
 
-### Back link (section index pages)
-Single "W" fixed top-left. Same styling as above. No breadcrumb.
+Markup, for pages one folder deep (root pages drop the `../` and use `index.html` for Home):
+```html
+<div class="w-nav" id="wNav">
+  <button class="w-btn" aria-label="Site menu" aria-expanded="false" aria-controls="wMenu">W</button>
+  <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
+    <li><a href="../">Home</a></li>
+    <li><a href="../text/">Texts</a></li>
+    <li><a href="../projects/" class="w-current">Projects</a></li>
+    <li><a href="../fragments/">Fragments</a></li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+</div>
+```
+Place it as the first child of `body`, and load `script.js` before `</body>`:
+```html
+<script src="../script.js" defer></script>
+```
 
 ### Return link (bottom of detail pages)
 ```html
@@ -189,18 +224,20 @@ Images are not thumbnails. They are not previews. Each image in a project page i
 The site has almost no interaction. This is intentional.
 
 **What exists:**
-- Homepage wordmark reveal (max-width animation + opacity fade, ~2.6s, triggers on load)
+- Homepage wordmark reveal (max-width animation + opacity fade, ~2.6s). Plays on the first visit only: `localStorage` key `wunian-intro-seen` skips it afterwards
 - Navigation link opacity on hover (0.2s ease)
+- W menu and its white mask (0.2s opacity fade, no movement)
+- W menu items change size on hover (instant)
 - Year filter button toggle (instant DOM filter, no animation)
 
 **What does not exist and should not be added:**
 - Page transitions or route animations
 - Image lightboxes or carousels
 - Scroll-triggered animations
-- Hover effects that transform, scale, or move elements
+- Hover effects that transform, scale, or move elements (the W menu item size change is the only exception)
 - Loading spinners or skeleton screens
 - Tooltips
-- Dropdown menus
+- Dropdown menus other than the W menu
 
 The site should feel like a book, not a web application.
 
@@ -213,6 +250,8 @@ The site is not mobile-first but it works at mobile sizes. No breakpoint-driven 
 - `nav { gap: 1.5rem }` at `max-width: 480px` (homepage)
 - Wordmark size: `clamp(5rem, 12vw, 10rem)` (fluid scaling)
 - Project containers at 56rem and essay containers at 38rem collapse gracefully at small widths because `max-width` + 2rem side padding gives adequate reading on any screen
+
+Below 60rem (56rem plus 2rem on each side) the shared left edge settles at 2rem. The W menu is the same at every size.
 
 No complex responsive breakpoints. No mobile-specific navigation. The layout adapts through `max-width` and fluid type.
 

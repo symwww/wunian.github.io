@@ -70,7 +70,7 @@ One global stylesheet (`style.css`) handles:
 - Font loading (Archivo Black + Akt)
 - Base reset
 - Homepage layout and animation
-- Shared components: `.back`, `.top-nav`, `.page`, `.page-title`, `.years`, `.year-btn`, `.article-list`, `.article-item`, `.article-year`, `.article-title`, `.return-link`
+- Shared components: `.w-nav`, `.w-btn`, `.w-dropdown`, `.w-current`, `.page`, `.page-title`, `.years`, `.year-btn`, `.article-list`, `.article-item`, `.article-year`, `.article-title`, `.return-link`
 
 Each project and text page has a local `<style>` block that:
 - Re-declares the Akt `@font-face` (necessary since it's not in `style.css`)
