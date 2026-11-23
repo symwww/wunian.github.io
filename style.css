@@ -92,6 +92,8 @@
 
 /* ── W navigation dropdown — all pages ── */
 .w-nav {
+  --w-time: 0.24s;
+  --w-motion: var(--w-time) cubic-bezier(0.4, 0, 0.6, 1);
   position: fixed;
   top: 2.5rem;
   left: max(2rem, calc((100% - 56rem) / 2));
@@ -121,6 +123,11 @@ body > .bottom-bar {
   transform: none;
 }
 
+/* opens a little slower than it closes */
+.w-nav.open {
+  --w-time: 0.32s;
+}
+
 /* white strip behind W, content scrolls out of sight under it */
 .w-nav::after {
   content: '';
@@ -142,15 +149,18 @@ body > .bottom-bar {
   background: rgba(255, 255, 255, 0.9);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s;
+  transition: opacity var(--w-motion), visibility var(--w-time) step-end;
+  will-change: opacity;
 }
 
 .w-nav.open::before {
+  transition: opacity var(--w-motion);
   opacity: 1;
   visibility: visible;
 }
 
 .w-btn {
+  position: relative;
   display: inline-block;
   text-decoration: none;
   font-family: 'Archivo Black', sans-serif;
@@ -162,11 +172,24 @@ body > .bottom-bar {
   padding: 0;
   cursor: pointer;
   color: #000;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--w-motion);
   user-select: none;
 }
 
-.w-btn:hover { opacity: 0.35; }
+/* 48px tap area, invisible */
+.w-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
+  transform: translate(-50%, -50%);
+}
+
+@media (hover: hover) {
+  .w-btn:hover { opacity: 0.35; }
+}
 
 .w-dropdown {
   list-style: none;
@@ -178,7 +201,8 @@ body > .bottom-bar {
   visibility: hidden;
   min-width: 9rem;
   padding: 0.3rem 1.2rem 0.3rem 0;
-  transition: opacity 0.2s ease, visibility 0.2s;
+  transition: opacity var(--w-motion), visibility var(--w-time) step-end;
+  will-change: opacity;
 }
 
 /* bridges the gap so the menu stays open between W and the first item */
@@ -192,6 +216,7 @@ body > .bottom-bar {
 }
 
 .w-nav.open .w-dropdown {
+  transition: opacity var(--w-motion);
   opacity: 1;
   visibility: visible;
 }
@@ -207,14 +232,38 @@ body > .bottom-bar {
   line-height: 1rem;
   padding: 0.5rem 0;
   white-space: nowrap;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--w-motion);
 }
 
-.w-dropdown a:hover,
-.w-dropdown a:focus-visible { font-size: 0.85rem; }
-.w-dropdown a:hover { opacity: 0.35; }
+.w-dropdown span {
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform var(--w-motion);
+}
+
+/* items fade in one after another */
+.w-dropdown li {
+  opacity: 0;
+  transition: opacity var(--w-motion);
+}
+
+.w-nav.open .w-dropdown li { opacity: 1; }
+.w-nav.open .w-dropdown li:nth-child(2) { transition-delay: 20ms; }
+.w-nav.open .w-dropdown li:nth-child(3) { transition-delay: 40ms; }
+.w-nav.open .w-dropdown li:nth-child(4) { transition-delay: 60ms; }
+.w-nav.open .w-dropdown li:nth-child(5) { transition-delay: 80ms; }
+
 .w-dropdown a.w-current { opacity: 0.35; }
-.w-dropdown a.w-current:hover { opacity: 1; }
+
+/* 0.65rem to 0.85rem */
+.w-dropdown a:focus-visible span { transform: scale(1.3077); }
+
+@media (hover: hover) {
+  .w-dropdown a:hover span { transform: scale(1.3077); }
+  .w-dropdown a:hover { opacity: 0.35; }
+  .w-dropdown a.w-current:hover { opacity: 1; }
+}
+
 
 /* ── section page container ── */
 .page {
@@ -240,6 +289,7 @@ body > .bottom-bar {
 }
 
 .year-btn {
+  position: relative;
   font-family: 'Archivo Black', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.1em;
@@ -250,6 +300,13 @@ body > .bottom-bar {
   color: #000;
   opacity: 0.3;
   transition: opacity 0.2s ease;
+}
+
+/* taller tap area, invisible */
+.year-btn::after {
+  content: '';
+  position: absolute;
+  inset: -1.1rem -0.75rem;
 }
 
 .year-btn:hover,
@@ -379,4 +436,30 @@ body > .bottom-bar {
   margin-top: 0;
   margin-bottom: 3rem;
   max-width: 38rem;
+}
+
+/* phones and touch screens: larger menu rows */
+@media (max-width: 734px), (pointer: coarse) {
+  .w-dropdown a {
+    font-size: 0.85rem;
+    padding: 1rem 0;
+  }
+
+  .w-dropdown a:focus-visible span,
+  .w-dropdown a:hover span { transform: none; }
+}
+
+/* phones: menu spans the screen and the page behind holds still */
+@media (max-width: 734px) {
+  .w-dropdown { width: calc(100vw - 4rem); }
+  html:has(.w-nav.open) { overflow: hidden; }
+}
+
+/* page edges: script.js draws the tension, so the native bounce is off there */
+html.at-edge { overscroll-behavior-y: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-nav,
+  .w-nav.open { --w-time: 0s; }
+  .w-nav.open .w-dropdown li { transition-delay: 0s; }
 }

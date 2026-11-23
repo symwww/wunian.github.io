@@ -162,7 +162,9 @@ About
 - Moving the cursor away, tapping the mask, or Escape closes it
 - Current section carries `class="w-current"` and sits at 0.35
 - No lines between items
-- Hover: the item grows from 0.65rem to 0.85rem and dims to 0.35. Row height and menu width stay fixed, so nothing shifts
+- Hover: the item's inner `span` scales from 0.65rem to 0.85rem and dims to 0.35. Only the span scales, so rows and hit areas never shift
+- All menu motion uses one curve, `cubic-bezier(0.4, 0, 0.6, 1)`: 0.32s to open, 0.24s to close, opacity and scale only. Items fade in 20ms apart. Reference: apple.com
+- Hover effects apply only on devices with a cursor. Reduced motion settings turn the motion off
 - Open state: a 90% white mask covers the page so the menu is the focus
 - A solid white strip, 5rem tall and full width, sits behind W so content never overlaps it
 
@@ -171,11 +173,11 @@ Markup, for pages one folder deep (root pages drop the `../` and use `index.html
 <div class="w-nav" id="wNav">
   <a class="w-btn" href="../" aria-label="WUNIAN home and site menu" aria-expanded="false" aria-controls="wMenu">W</a>
   <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
-    <li><a href="../">Home</a></li>
-    <li><a href="../text/">Texts</a></li>
-    <li><a href="../projects/" class="w-current">Projects</a></li>
-    <li><a href="../fragments/">Fragments</a></li>
-    <li><a href="../about.html">About</a></li>
+    <li><a href="../"><span>Home</span></a></li>
+    <li><a href="../text/"><span>Texts</span></a></li>
+    <li><a href="../projects/" class="w-current"><span>Projects</span></a></li>
+    <li><a href="../fragments/"><span>Fragments</span></a></li>
+    <li><a href="../about.html"><span>About</span></a></li>
   </ul>
 </div>
 ```
@@ -228,14 +230,15 @@ The site has almost no interaction. This is intentional.
 **What exists:**
 - Homepage wordmark reveal (max-width animation + opacity fade, ~2.6s). Plays on the first visit only: `localStorage` key `wunian-intro-seen` skips it afterwards
 - Navigation link opacity on hover (0.2s ease)
-- W menu and its white mask (0.2s opacity fade, no movement)
-- W menu items change size on hover (instant)
+- W menu and its white mask (opacity fade, no movement)
+- W menu items scale on hover
+- Page edge tension on every page: pulling past the top or bottom meets growing resistance (120px at most) and eases back on release. Short vibration on devices that support it. Off with reduced motion
 - Year filter button toggle (instant DOM filter, no animation)
 
 **What does not exist and should not be added:**
 - Page transitions or route animations
 - Image lightboxes or carousels
-- Scroll-triggered animations
+- Scroll-triggered animations (the page edge tension is the only exception)
 - Hover effects that transform, scale, or move elements (the W menu item size change is the only exception)
 - Loading spinners or skeleton screens
 - Tooltips
@@ -253,9 +256,14 @@ The site is not mobile-first but it works at mobile sizes. No breakpoint-driven 
 - Wordmark size: `clamp(5rem, 12vw, 10rem)` (fluid scaling)
 - Project containers at 56rem and essay containers at 38rem collapse gracefully at small widths because `max-width` + 2rem side padding gives adequate reading on any screen
 
-Below 60rem (56rem plus 2rem on each side) the shared left edge settles at 2rem. The W menu is the same at every size.
+Below 60rem (56rem plus 2rem on each side) the shared left edge settles at 2rem.
 
-No complex responsive breakpoints. No mobile-specific navigation. The layout adapts through `max-width` and fluid type.
+Touch and phones (reference: apple.com):
+- W has an invisible 48px tap area. Year buttons have an enlarged one
+- At `max-width: 734px` or on touch screens, menu items are 0.85rem in 48px rows
+- At `max-width: 734px` the menu spans the screen and the page behind does not scroll
+
+No complex responsive breakpoints. One menu at every size, only its scale changes. The layout adapts through `max-width` and fluid type.
 
 ---
 
