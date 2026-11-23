@@ -35,15 +35,50 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-expanded', open);
     };
 
-    btn.addEventListener('click', () => setOpen(!wNav.classList.contains('open')));
+    let closeTimer;
+    let pointerType = '';
+
+    const cancelClose = () => clearTimeout(closeTimer);
+    const closeSoon = () => {
+      cancelClose();
+      closeTimer = setTimeout(() => setOpen(false), 150);
+    };
+
+    // the mask and strip are pseudo-elements, so hovering them targets wNav itself
+    wNav.addEventListener('pointerover', e => {
+      if (e.pointerType !== 'mouse') return;
+      if (e.target === wNav) return closeSoon();
+      cancelClose();
+      if (e.target === btn) setOpen(true);
+    });
+    wNav.addEventListener('pointerleave', e => {
+      if (e.pointerType === 'mouse') closeSoon();
+    });
+
+    btn.addEventListener('pointerdown', e => { pointerType = e.pointerType; });
+    btn.addEventListener('click', e => {
+      const touched = pointerType === 'touch' || pointerType === 'pen';
+      pointerType = '';
+      if (touched && !wNav.classList.contains('open')) {
+        e.preventDefault();
+        setOpen(true);
+      }
+    });
+
+    wNav.addEventListener('focusin', e => {
+      if (e.target.matches(':focus-visible')) setOpen(true);
+    });
+    wNav.addEventListener('focusout', e => {
+      if (e.relatedTarget && !wNav.contains(e.relatedTarget)) setOpen(false);
+    });
     document.addEventListener('click', e => {
-      // a click on the mask (a pseudo-element) targets wNav itself
       if (e.target === wNav || !wNav.contains(e.target)) setOpen(false);
     });
+    window.addEventListener('pageshow', e => { if (e.persisted) setOpen(false); });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && wNav.classList.contains('open')) {
-        setOpen(false);
         btn.focus();
+        setOpen(false);
       }
     });
   }

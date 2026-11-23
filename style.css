@@ -151,6 +151,8 @@ body > .bottom-bar {
 }
 
 .w-btn {
+  display: inline-block;
+  text-decoration: none;
   font-family: 'Archivo Black', sans-serif;
   font-size: 0.95rem;
   letter-spacing: 0.14em;
@@ -177,6 +179,16 @@ body > .bottom-bar {
   min-width: 9rem;
   padding: 0.3rem 1.2rem 0.3rem 0;
   transition: opacity 0.2s ease, visibility 0.2s;
+}
+
+/* bridges the gap so the menu stays open between W and the first item */
+.w-dropdown::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 0.9rem;
 }
 
 .w-nav.open .w-dropdown {

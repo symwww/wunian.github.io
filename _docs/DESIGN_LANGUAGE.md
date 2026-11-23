@@ -157,7 +157,9 @@ Projects
 Fragments
 About
 ```
-- Click W to open or close. A click outside the menu or Escape also closes it
+- Click W to go home. Hover or keyboard focus on W opens the menu
+- Touch: the first tap on W opens the menu, a second tap goes home
+- Moving the cursor away, tapping the mask, or Escape closes it
 - Current section carries `class="w-current"` and sits at 0.35
 - No lines between items
 - Hover: the item grows from 0.65rem to 0.85rem and dims to 0.35. Row height and menu width stay fixed, so nothing shifts
@@ -167,7 +169,7 @@ About
 Markup, for pages one folder deep (root pages drop the `../` and use `index.html` for Home):
 ```html
 <div class="w-nav" id="wNav">
-  <button class="w-btn" aria-label="Site menu" aria-expanded="false" aria-controls="wMenu">W</button>
+  <a class="w-btn" href="../" aria-label="WUNIAN home and site menu" aria-expanded="false" aria-controls="wMenu">W</a>
   <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
     <li><a href="../">Home</a></li>
     <li><a href="../text/">Texts</a></li>
