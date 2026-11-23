@@ -32,7 +32,7 @@ Neither font has a true italic. Italics in Akt are slanted by the browser. Do no
 | Element | Font | Weight | Size | Letter-spacing | Notes |
 |---------|------|--------|------|---------------|-------|
 | Site wordmark | Archivo Black | 400 | `clamp(5rem, 12vw, 10rem)` | -0.02em | Homepage only |
-| W icon | Archivo Black | 400 | 0.95rem | 0.14em | Fixed position, 0.7px optical nudge right |
+| W icon | Archivo Black | 400 | 1.2rem desktop, 0.95rem up to 734px | 0.14em | Fixed position, 0.7px optical nudge right |
 | W menu items | Archivo Black | 400 | 0.65rem | 0.14em | Uppercase, 0.85rem on hover and keyboard focus |
 | Page section title | Archivo Black | 400 | 0.85rem | 0.14em | "PROJECTS", "TEXTS" |
 | Year buttons | Archivo Black | 400 | 0.65rem | 0.10em | |
@@ -165,6 +165,7 @@ About
 - Hover: the item's inner `span` scales from 0.65rem to 0.85rem and dims to 0.35. Only the span scales, so rows and hit areas never shift
 - All menu motion uses one curve, `cubic-bezier(0.4, 0, 0.6, 1)`: 0.32s to open, 0.24s to close, opacity and scale only. Items fade in 20ms apart. Reference: apple.com
 - Hover effects apply only on devices with a cursor. Reduced motion settings turn the motion off
+- Hierarchy: W is always larger than the menu items and stays solid black while the menu is open
 - Open state: a 90% white mask covers the page so the menu is the focus
 - A solid white strip, 5rem tall and full width, sits behind W so content never overlaps it
 
@@ -232,13 +233,13 @@ The site has almost no interaction. This is intentional.
 - Navigation link opacity on hover (0.2s ease)
 - W menu and its white mask (opacity fade, no movement)
 - W menu items scale on hover
-- Page edge tension on every page: pulling past the top or bottom meets growing resistance (120px at most) and eases back on release. Short vibration on devices that support it. Off with reduced motion
+- Page edge tension: the browser's native bounce, as on apple.com. Do not imitate it in JavaScript or set `overscroll-behavior` on the page
 - Year filter button toggle (instant DOM filter, no animation)
 
 **What does not exist and should not be added:**
 - Page transitions or route animations
 - Image lightboxes or carousels
-- Scroll-triggered animations (the page edge tension is the only exception)
+- Scroll-triggered animations
 - Hover effects that transform, scale, or move elements (the W menu item size change is the only exception)
 - Loading spinners or skeleton screens
 - Tooltips

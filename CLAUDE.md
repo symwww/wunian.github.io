@@ -59,7 +59,7 @@ wunian.site/
 | Element | Font | Weight | Size | Tracking |
 |---------|------|--------|------|---------|
 | Wordmark | Archivo Black | 400 | clamp | -0.02em |
-| W icon | Archivo Black | 400 | 0.95rem | 0.14em |
+| W icon | Archivo Black | 400 | 1.2rem desktop, 0.95rem phone | 0.14em |
 | W menu items | Archivo Black | 400 | 0.65rem (0.85rem on hover) | 0.14em |
 | Labels/meta | Archivo Black | 400 | 0.65–0.68rem | 0.08–0.14em |
 | Body text | Akt | 100 | 1rem | — |

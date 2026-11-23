@@ -438,6 +438,13 @@ body > .bottom-bar {
   max-width: 38rem;
 }
 
+/* desktop: W leads, menu items follow */
+@media (min-width: 735px) {
+  .w-btn { font-size: 1.2rem; }
+}
+
+.w-nav.open .w-btn { opacity: 1; }
+
 /* phones and touch screens: larger menu rows */
 @media (max-width: 734px), (pointer: coarse) {
   .w-dropdown a {
@@ -455,8 +462,10 @@ body > .bottom-bar {
   html:has(.w-nav.open) { overflow: hidden; }
 }
 
-/* page edges: script.js draws the tension, so the native bounce is off there */
-html.at-edge { overscroll-behavior-y: none; }
+/* iOS: short pages scroll by 1px so they get the native bounce too */
+@supports (-webkit-touch-callout: none) {
+  html { min-height: calc(100% + 1px); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .w-nav,
