@@ -33,7 +33,7 @@ Neither font has a true italic. Italics in Akt are slanted by the browser. Do no
 |---------|------|--------|------|---------------|-------|
 | Site wordmark | Archivo Black | 400 | `clamp(5rem, 12vw, 10rem)` | -0.02em | Homepage only |
 | W icon | Archivo Black | 400 | 1.2rem desktop, 0.95rem up to 734px | 0.14em | Fixed position, 0.7px optical nudge right |
-| W menu items | Archivo Black | 400 | 0.65rem | 0.14em | Uppercase, 0.85rem on hover and keyboard focus |
+| W menu items | Archivo Black | 400 | 0.65rem | 0.14em | Uppercase, 0.85rem on phones and touch screens |
 | Page section title | Archivo Black | 400 | 0.85rem | 0.14em | "PROJECTS", "TEXTS" |
 | Year buttons | Archivo Black | 400 | 0.65rem | 0.10em | |
 | Project/article list items | Archivo Black | 400 | 0.95rem | — | Not tracked |
@@ -162,8 +162,8 @@ About
 - Moving the cursor away, tapping the mask, or Escape closes it
 - Current section carries `class="w-current"` and sits at 0.35
 - No lines between items
-- Hover: the item's inner `span` scales from 0.65rem to 0.85rem and dims to 0.35. Only the span scales, so rows and hit areas never shift
-- Menu motion is quick and `ease-out`: 0.16s to open, 0.12s to close, 0.12s for item hover. Opacity and scale only, no delays or stagger
+- Hover: black items turn gray (0.35), the gray current item turns black. Size never changes
+- Menu motion is quick and `ease-out`: 0.16s to open, 0.12s to close, 0.12s for item hover. Opacity only, no delays or stagger
 - Hover effects apply only on devices with a cursor. Reduced motion settings turn the motion off
 - Hierarchy: W is always larger than the menu items and stays solid black while the menu is open
 - Open state: a 90% white mask covers the page so the menu is the focus
@@ -174,11 +174,11 @@ Markup, for pages one folder deep (root pages drop the `../` and use `index.html
 <div class="w-nav" id="wNav">
   <a class="w-btn" href="../" aria-label="WUNIAN home and site menu" aria-expanded="false" aria-controls="wMenu">W</a>
   <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
-    <li><a href="../"><span>Home</span></a></li>
-    <li><a href="../text/"><span>Texts</span></a></li>
-    <li><a href="../projects/" class="w-current"><span>Projects</span></a></li>
-    <li><a href="../fragments/"><span>Fragments</span></a></li>
-    <li><a href="../about.html"><span>About</span></a></li>
+    <li><a href="../">Home</a></li>
+    <li><a href="../text/">Texts</a></li>
+    <li><a href="../projects/" class="w-current">Projects</a></li>
+    <li><a href="../fragments/">Fragments</a></li>
+    <li><a href="../about.html">About</a></li>
   </ul>
 </div>
 ```
@@ -232,7 +232,6 @@ The site has almost no interaction. This is intentional.
 - Homepage wordmark reveal (max-width animation + opacity fade, ~2.6s). Plays on the first visit only: `localStorage` key `wunian-intro-seen` skips it afterwards
 - Navigation link opacity on hover (0.2s ease)
 - W menu and its white mask (opacity fade, no movement)
-- W menu items scale on hover
 - Page edge tension: the browser's native bounce, as on apple.com. Do not imitate it in JavaScript or set `overscroll-behavior` on the page
 - Year filter button toggle (instant DOM filter, no animation)
 
@@ -240,7 +239,7 @@ The site has almost no interaction. This is intentional.
 - Page transitions or route animations
 - Image lightboxes or carousels
 - Scroll-triggered animations
-- Hover effects that transform, scale, or move elements (the W menu item size change is the only exception)
+- Hover effects that transform, scale, or move elements
 - Loading spinners or skeleton screens
 - Tooltips
 - Dropdown menus other than the W menu

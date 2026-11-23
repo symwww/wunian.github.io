@@ -236,19 +236,9 @@ body > .bottom-bar {
   transition: opacity var(--w-hover);
 }
 
-.w-dropdown span {
-  display: inline-block;
-  transform-origin: left center;
-  transition: transform var(--w-hover);
-}
-
 .w-dropdown a.w-current { opacity: 0.35; }
 
-/* 0.65rem to 0.85rem */
-.w-dropdown a:focus-visible span { transform: scale(1.3077); }
-
 @media (hover: hover) {
-  .w-dropdown a:hover span { transform: scale(1.3077); }
   .w-dropdown a:hover { opacity: 0.35; }
   .w-dropdown a.w-current:hover { opacity: 1; }
 }
@@ -440,9 +430,6 @@ body > .bottom-bar {
     font-size: 0.85rem;
     padding: 1rem 0;
   }
-
-  .w-dropdown a:focus-visible span,
-  .w-dropdown a:hover span { transform: none; }
 }
 
 /* phones: menu spans the screen and the page behind holds still */

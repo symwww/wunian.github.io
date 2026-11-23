@@ -60,7 +60,7 @@ wunian.site/
 |---------|------|--------|------|---------|
 | Wordmark | Archivo Black | 400 | clamp | -0.02em |
 | W icon | Archivo Black | 400 | 1.2rem desktop, 0.95rem phone | 0.14em |
-| W menu items | Archivo Black | 400 | 0.65rem (0.85rem on hover) | 0.14em |
+| W menu items | Archivo Black | 400 | 0.65rem (0.85rem on phones) | 0.14em |
 | Labels/meta | Archivo Black | 400 | 0.65–0.68rem | 0.08–0.14em |
 | Body text | Akt | 100 | 1rem | — |
 | Subheadings (h2) | Akt | 300 | 1rem–1.15rem | — |
@@ -92,7 +92,7 @@ wunian.site/
 - `border-radius` on anything
 - `box-shadow` / `drop-shadow`
 - Animations beyond homepage wordmark reveal and opacity transitions
-- Hover states that move or transform elements (exception: W menu items grow on hover)
+- Hover states that move or transform elements
 - Dropdown menus other than the W menu
 - Any SaaS/portfolio-template aesthetic (cards, grid thumbnails, tags, CTAs)
 
