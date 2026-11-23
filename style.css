@@ -92,8 +92,9 @@
 
 /* ── W navigation dropdown — all pages ── */
 .w-nav {
-  --w-time: 0.24s;
-  --w-motion: var(--w-time) cubic-bezier(0.4, 0, 0.6, 1);
+  --w-time: 0.12s;
+  --w-hover: 0.12s ease-out;
+  --w-motion: var(--w-time) ease-out;
   position: fixed;
   top: 2.5rem;
   left: max(2rem, calc((100% - 56rem) / 2));
@@ -125,7 +126,7 @@ body > .bottom-bar {
 
 /* opens a little slower than it closes */
 .w-nav.open {
-  --w-time: 0.32s;
+  --w-time: 0.16s;
 }
 
 /* white strip behind W, content scrolls out of sight under it */
@@ -232,26 +233,14 @@ body > .bottom-bar {
   line-height: 1rem;
   padding: 0.5rem 0;
   white-space: nowrap;
-  transition: opacity var(--w-motion);
+  transition: opacity var(--w-hover);
 }
 
 .w-dropdown span {
   display: inline-block;
   transform-origin: left center;
-  transition: transform var(--w-motion);
+  transition: transform var(--w-hover);
 }
-
-/* items fade in one after another */
-.w-dropdown li {
-  opacity: 0;
-  transition: opacity var(--w-motion);
-}
-
-.w-nav.open .w-dropdown li { opacity: 1; }
-.w-nav.open .w-dropdown li:nth-child(2) { transition-delay: 20ms; }
-.w-nav.open .w-dropdown li:nth-child(3) { transition-delay: 40ms; }
-.w-nav.open .w-dropdown li:nth-child(4) { transition-delay: 60ms; }
-.w-nav.open .w-dropdown li:nth-child(5) { transition-delay: 80ms; }
 
 .w-dropdown a.w-current { opacity: 0.35; }
 
@@ -469,6 +458,5 @@ body > .bottom-bar {
 
 @media (prefers-reduced-motion: reduce) {
   .w-nav,
-  .w-nav.open { --w-time: 0s; }
-  .w-nav.open .w-dropdown li { transition-delay: 0s; }
+  .w-nav.open { --w-time: 0s; --w-hover: 0s; }
 }

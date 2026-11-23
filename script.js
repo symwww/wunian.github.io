@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelClose = () => clearTimeout(closeTimer);
     const closeSoon = () => {
       cancelClose();
-      closeTimer = setTimeout(() => setOpen(false), 150);
+      closeTimer = setTimeout(() => setOpen(false), 80);
     };
 
     // the mask and strip are pseudo-elements, so hovering them targets wNav itself

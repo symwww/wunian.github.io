@@ -163,7 +163,7 @@ About
 - Current section carries `class="w-current"` and sits at 0.35
 - No lines between items
 - Hover: the item's inner `span` scales from 0.65rem to 0.85rem and dims to 0.35. Only the span scales, so rows and hit areas never shift
-- All menu motion uses one curve, `cubic-bezier(0.4, 0, 0.6, 1)`: 0.32s to open, 0.24s to close, opacity and scale only. Items fade in 20ms apart. Reference: apple.com
+- Menu motion is quick and `ease-out`: 0.16s to open, 0.12s to close, 0.12s for item hover. Opacity and scale only, no delays or stagger
 - Hover effects apply only on devices with a cursor. Reduced motion settings turn the motion off
 - Hierarchy: W is always larger than the menu items and stays solid black while the menu is open
 - Open state: a 90% white mask covers the page so the menu is the focus
