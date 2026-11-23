@@ -41,7 +41,16 @@
   </style>
 </head>
 <body>
-  <a class="back" href="../" aria-label="Back to WUNIAN home">W</a>
+  <div class="w-nav" id="wNav">
+    <button class="w-btn" aria-label="Site menu" aria-expanded="false" aria-controls="wMenu">W</button>
+    <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
+      <li><a href="../">Home</a></li>
+      <li><a href="../text/">Texts</a></li>
+      <li><a href="../projects/" class="w-current">Projects</a></li>
+      <li><a href="../fragments/">Fragments</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </div>
   <main class="page">
     <h1 class="page-title">Projects</h1>
 
@@ -129,5 +138,6 @@
       });
     });
   </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>

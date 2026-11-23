@@ -112,10 +112,16 @@
   </style>
 </head>
 <body>
-  <nav class="top-nav">
-    <a href="../">W</a>
-    <a href="./">Texts</a>
-  </nav>
+  <div class="w-nav" id="wNav">
+    <button class="w-btn" aria-label="Site menu" aria-expanded="false" aria-controls="wMenu">W</button>
+    <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
+      <li><a href="../">Home</a></li>
+      <li><a href="../text/" class="w-current">Texts</a></li>
+      <li><a href="../projects/">Projects</a></li>
+      <li><a href="../fragments/">Fragments</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </div>
   <main>
   <article class="essay">
 
@@ -152,5 +158,6 @@
     "mainEntityOfPage": "https://wuniancollective.com/text/deleuze-movement.html"
   }
   </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>

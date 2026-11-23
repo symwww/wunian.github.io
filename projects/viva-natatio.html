@@ -111,10 +111,16 @@
   </style>
 </head>
 <body>
-  <nav class="top-nav">
-    <a href="../">W</a>
-    <a href="./">Projects</a>
-  </nav>
+  <div class="w-nav" id="wNav">
+    <button class="w-btn" aria-label="Site menu" aria-expanded="false" aria-controls="wMenu">W</button>
+    <ul class="w-dropdown" id="wMenu" aria-label="Site navigation">
+      <li><a href="../">Home</a></li>
+      <li><a href="../text/">Texts</a></li>
+      <li><a href="../projects/" class="w-current">Projects</a></li>
+      <li><a href="../fragments/">Fragments</a></li>
+      <li><a href="../about.html">About</a></li>
+    </ul>
+  </div>
 
   <main class="project">
     <p class="project-label">Projects</p>
@@ -184,5 +190,6 @@
     "mainEntityOfPage": "https://wuniancollective.com/projects/viva-natatio.html"
   }
   </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>

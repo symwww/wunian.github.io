@@ -65,6 +65,11 @@
     opacity: 1;
   }
   
+  .intro.skip .unian,
+  .intro.skip nav {
+    transition: none;
+  }
+
   nav a {
     font-family: 'Archivo Black', sans-serif;
     font-size: 0.68rem;
@@ -85,50 +90,119 @@
     }
   }
 
-/* ── back link — every sub-page ── */
-.back {
+/* ── W navigation dropdown — all pages ── */
+.w-nav {
   position: fixed;
   top: 2.5rem;
-  left: 2.5rem;
+  left: max(2rem, calc((100% - 56rem) / 2));
+  z-index: 100;
+}
+
+/* shared left edge: every text column starts on the W line. */
+body .page,
+body .essay {
+  margin-left: max(0px, calc((100% - 56rem) / 2));
+}
+
+body > .about {
+  margin-left: max(0px, calc((100% - 60rem) / 2));
+  margin-right: auto;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+body > .content {
+  margin-left: max(2rem, calc((100% - 56rem) / 2));
+  margin-right: auto;
+}
+
+body > .bottom-bar {
+  left: max(2rem, calc((100% - 56rem) / 2));
+  transform: none;
+}
+
+/* white strip behind W, content scrolls out of sight under it */
+.w-nav::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5rem;
+  z-index: -1;
+  background: #fff;
+}
+
+/* white mask over the page while the menu is open */
+.w-nav::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s;
+}
+
+.w-nav.open::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.w-btn {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  background: none;
+  margin-left: 0.7px; /* optical: W edge meets the H, P, F stems */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #000;
+  transition: opacity 0.2s ease;
+  user-select: none;
+}
+
+.w-btn:hover { opacity: 0.35; }
+
+.w-dropdown {
+  list-style: none;
+  position: absolute;
+  top: calc(100% + 0.9rem);
+  left: 0;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  min-width: 9rem;
+  padding: 0.3rem 1.2rem 0.3rem 0;
+  transition: opacity 0.2s ease, visibility 0.2s;
+}
+
+.w-nav.open .w-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.w-dropdown a {
+  display: block;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
   color: #000;
+  line-height: 1rem;
+  padding: 0.5rem 0;
+  white-space: nowrap;
   transition: opacity 0.2s ease;
 }
 
-.back:hover {
-  opacity: 0.35;
-}
-
-/* ── top nav — W + section breadcrumb for detail pages ── */
-.top-nav {
-  position: fixed;
-  top: 2.5rem;
-  left: 2.5rem;
-  display: flex;
-  gap: 1.5rem;
-  align-items: baseline;
-}
-
-.top-nav a {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #000;
-  transition: opacity 0.2s ease;
-}
-
-/* W — full opacity, dims on hover */
-.top-nav a:hover { opacity: 0.35; }
-
-/* section link — dimmed by default, brightens on hover */
-.top-nav a + a { opacity: 0.35; }
-.top-nav a + a:hover { opacity: 1; }
+.w-dropdown a:hover,
+.w-dropdown a:focus-visible { font-size: 0.85rem; }
+.w-dropdown a:hover { opacity: 0.35; }
+.w-dropdown a.w-current { opacity: 0.35; }
+.w-dropdown a.w-current:hover { opacity: 1; }
 
 /* ── section page container ── */
 .page {
